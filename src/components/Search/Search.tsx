@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   width: 100%;
   min-width: 24rem;
   max-width: 48rem;
+  padding: 3rem 0 5rem 0;
 `;
 
 const Input = styled.input`
