@@ -42,6 +42,7 @@ const Info: React.FC = () => {
 
   useEffect(() => {
     fetchProductInfo();
+    // eslint-disable-next-line
   }, [id]);
 
   if (!product) {

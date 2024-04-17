@@ -12,19 +12,57 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 8rem;
+
+  @media screen and (max-width: 359px) {
+    padding: 0 1.2rem;
+  }
+
+  @media screen and (min-width: 360px) and (max-width: 389px) {
+    padding: 0 1.4rem;
+  }
+
+  @media screen and (min-width: 390px) and (max-width: 667px) {
+    padding: 0 1.6rem;
+  }
+
+  @media screen and (min-width: 668px) and (max-width: 1023px) {
+    padding: 0 4.8rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 0 4rem;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 0 8rem;
+  }
 `;
 
 const ListWrapper = styled.div`
   position: relative;
   width: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  display: grid;
-  place-items: center;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  padding: 2rem;
+  gap: 1.2rem;
+  padding: 0.8rem;
+
+  @media screen and (min-width: 390px) and (max-width: 667px) {
+    gap: 1.6rem;
+  }
+
+  @media screen and (min-width: 668px) {
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    padding: 2rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    gap: 2rem;
+  }
 `;
 
 interface Product {
