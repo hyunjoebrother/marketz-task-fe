@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../../components/Header/Header";
-import Search from "../../components/Search/Search";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import Button from "../../components/Button/Button";
 
 const Wrapper = styled.div`
   position: relative;
@@ -26,12 +26,12 @@ const ListWrapper = styled.div`
   padding: 2rem;
 `;
 
-const Main: React.FC = () => {
+const Info: React.FC = () => {
   return (
     <div>
       <Header />
       <Wrapper>
-        <Search />
+        <Button path="/" text="목록으로 돌아가기" />
         <ListWrapper>
           <ProductCard />
           <ProductCard />
@@ -44,4 +44,4 @@ const Main: React.FC = () => {
   );
 };
 
-export default Main;
+export default Info;
