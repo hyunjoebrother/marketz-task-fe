@@ -1,5 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+interface ProductCardProps {
+  id: number;
+  title: string;
+  price: number;
+  brand: string;
+  thumbnail: string;
+}
 
 const Wrapper = styled.div`
   position: relative;
@@ -15,7 +24,7 @@ const Wrapper = styled.div`
   padding: 1rem;
 `;
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled.img`
   position: relative;
   display: flex;
   justify-content: center;
@@ -40,15 +49,24 @@ const Text = styled.div`
   color: black;
 `;
 
-const ProductCard: React.FC = () => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  id,
+  thumbnail,
+  brand,
+  title,
+  price,
+}) => {
   return (
-    <Wrapper>
-      <ImageWrapper>IMAGE</ImageWrapper>
-      <TextWrapper>
-        <Text>브랜드</Text>
-        <Text>이름</Text>
-      </TextWrapper>
-    </Wrapper>
+    <Link to={`/info/${id}`}>
+      <Wrapper>
+        <ImageWrapper src={thumbnail} />
+        <TextWrapper>
+          <Text>{brand}</Text>
+          <Text>{title}</Text>
+        </TextWrapper>
+        <Text>{price}</Text>
+      </Wrapper>
+    </Link>
   );
 };
 
