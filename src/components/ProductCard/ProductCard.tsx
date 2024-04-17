@@ -1,6 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
+interface ProductCardProps {
+  id: number;
+  title: string;
+  price: number;
+  brand: string;
+  thumbnail: string;
+}
+
 const Wrapper = styled.div`
   position: relative;
   display: flex;
@@ -15,7 +23,7 @@ const Wrapper = styled.div`
   padding: 1rem;
 `;
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled.img`
   position: relative;
   display: flex;
   justify-content: center;
@@ -40,14 +48,21 @@ const Text = styled.div`
   color: black;
 `;
 
-const ProductCard: React.FC = () => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  id,
+  thumbnail,
+  brand,
+  title,
+  price,
+}) => {
   return (
     <Wrapper>
-      <ImageWrapper>IMAGE</ImageWrapper>
+      <ImageWrapper src={thumbnail} />
       <TextWrapper>
-        <Text>브랜드</Text>
-        <Text>이름</Text>
+        <Text>{brand}</Text>
+        <Text>{title}</Text>
       </TextWrapper>
+      <Text>{price}</Text>
     </Wrapper>
   );
 };
