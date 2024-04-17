@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface ProductCardProps {
@@ -56,14 +57,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
   price,
 }) => {
   return (
-    <Wrapper>
-      <ImageWrapper src={thumbnail} />
-      <TextWrapper>
-        <Text>{brand}</Text>
-        <Text>{title}</Text>
-      </TextWrapper>
-      <Text>{price}</Text>
-    </Wrapper>
+    <Link to={`/info/${id}`}>
+      <Wrapper>
+        <ImageWrapper src={thumbnail} />
+        <TextWrapper>
+          <Text>{brand}</Text>
+          <Text>{title}</Text>
+        </TextWrapper>
+        <Text>{price}</Text>
+      </Wrapper>
+    </Link>
   );
 };
 
