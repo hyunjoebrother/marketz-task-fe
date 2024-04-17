@@ -20,23 +20,32 @@ const Input = styled.input`
   width: calc(100% - 3rem);
   height: 6vh;
   border-radius: 3rem;
-  padding: 0 3rem;
-  color: black;
-  font-size: 1rem;
-  ::placeholder {
+  border: 0.12rem solid #4f5153;
+  padding: 0 2rem;
+  color: #4f5153;
+  font-size: 1.2rem;
+  &::placeholder {
     color: gray;
-    font-size: 0.8rem;
+    font-size: 0.88rem;
+  }
+  &:focus {
+    border: 0.16rem solid #4f5153;
   }
 `;
 
-const Text = styled.div`
+const Text = styled.h3`
   font-size: 1rem;
   font-weight: 700;
-  color: black;
+  color: #4f5153;
   position: absolute;
   right: 1rem;
   width: 2rem;
   cursor: pointer;
+
+  &:hover {
+    color: #3474ae;
+    font-weight: 900;
+  }
 `;
 
 const Search: React.FC = () => {
