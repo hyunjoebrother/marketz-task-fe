@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/Header/Header";
 import Search from "../../components/Search/Search";
@@ -133,10 +134,15 @@ const Main: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [searchItem, setSearchItem] = useState("");
   const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const { q } = useParams<{ q?: string }>();
 
   useEffect(() => {
     fetchData();
-  }, []);
+    if (q) {
+      setSearchItem(q);
+      searchProducts(q);
+    }
+  }, [q]);
 
   const fetchData = async () => {
     try {

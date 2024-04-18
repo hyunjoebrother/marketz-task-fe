@@ -151,7 +151,7 @@ interface SearchProps {
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
   const [searchItem, setSearchItem] = useState("");
   const navigate = useNavigate();
-  const params = useParams();
+  const params = useParams<{ q?: string }>();
 
   useEffect(() => {
     const { q } = params;
