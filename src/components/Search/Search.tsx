@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -143,11 +144,46 @@ const Text = styled.span`
   }
 `;
 
-const Search: React.FC = () => {
+interface SearchProps {
+  onSearch: (searchTerm: string) => void;
+}
+
+const Search: React.FC<SearchProps> = ({ onSearch }) => {
+  const [searchItem, setSearchItem] = useState("");
+  const navigate = useNavigate();
+  const params = useParams();
+
+  useEffect(() => {
+    const { q } = params;
+    if (q) {
+      setSearchItem(q);
+    }
+  }, [params]);
+
+  const handleSearch = () => {
+    onSearch(searchItem);
+    if (searchItem.trim() === "") {
+      navigate("/");
+    } else {
+      navigate(`?q=${searchItem}`);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <Wrapper>
-      <Input placeholder="검색어를 입력하세요" />
-      <Text>검색</Text>
+      <Input
+        placeholder="검색어를 입력하세요"
+        value={searchItem}
+        onChange={(e) => setSearchItem(e.target.value)}
+        onKeyPress={handleKeyPress}
+      />
+      <Text onClick={handleSearch}>검색</Text>
     </Wrapper>
   );
 };
