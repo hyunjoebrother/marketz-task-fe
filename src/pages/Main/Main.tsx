@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import Search from "../../components/Search/Search";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { fetchProducts } from "../../assets/libs/api";
+import Button from "../../components/Button/Button";
 
 const Wrapper = styled.div`
   position: relative;
@@ -65,6 +66,51 @@ const ListWrapper = styled.div`
   }
 `;
 
+const BtnWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 0 1.2rem 0;
+`;
+
+const UpText = styled.p`
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  color: #4f5153;
+  cursor: pointer;
+
+  @media screen and (max-width: 359px) {
+    font-size: 0.88rem;
+  }
+
+  @media screen and (min-width: 360px) and (max-width: 389px) {
+    font-size: 1rem;
+  }
+
+  @media screen and (min-width: 390px) and (max-width: 667px) {
+    font-size: 1.4rem;
+  }
+
+  @media screen and (min-width: 668px) and (max-width: 1023px) {
+    font-size: 1.2rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 1.32rem;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 1.36rem;
+  }
+`;
+
 interface Product {
   id: number;
   title: string;
@@ -87,18 +133,29 @@ const Main: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data: ProductResponse = await fetchProducts();
-        setProducts(data.products);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
     fetchData();
   }, []);
 
-  //   console.log("데이터:", products);
+  const fetchData = async () => {
+    try {
+      const data: ProductResponse = await fetchProducts();
+      setProducts(data.products.slice(0, 10));
+    } catch (error) {
+      console.error("Error fetching:", error);
+    }
+  };
+
+  const loadMore = async () => {
+    try {
+      const data: ProductResponse = await fetchProducts();
+      setProducts((prevProducts) => [
+        ...prevProducts,
+        ...data.products.slice(prevProducts.length, prevProducts.length + 10),
+      ]);
+    } catch (error) {
+      console.error("Error loading:", error);
+    }
+  };
 
   return (
     <div>
@@ -117,6 +174,18 @@ const Main: React.FC = () => {
             />
           ))}
         </ListWrapper>
+        <BtnWrapper>
+          {products.length === 100 ? (
+            <UpText
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              👆
+              <br />맨 위로 이동하기
+            </UpText>
+          ) : (
+            <Button text="더보기" onClick={loadMore} />
+          )}
+        </BtnWrapper>
       </Wrapper>
     </div>
   );

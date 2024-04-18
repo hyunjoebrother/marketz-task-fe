@@ -1,15 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 interface ButtonProps {
-  path: string;
   text: string;
+  onClick?: () => void;
 }
-
-const BtnLink = styled(Link)`
-  text-decoration: none;
-`;
 
 const Wrapper = styled.div`
   position: relative;
@@ -19,6 +14,7 @@ const Wrapper = styled.div`
   padding: 0.8rem 2.4rem 0.8rem 2.4rem;
   background-color: #4f5153;
   border-radius: 20rem;
+  cursor: pointer;
 `;
 
 const Text = styled.div`
@@ -46,13 +42,11 @@ const Text = styled.div`
   }
 `;
 
-const Button: React.FC<ButtonProps> = ({ path, text }) => {
+const Button: React.FC<ButtonProps> = ({ text, onClick }) => {
   return (
-    <BtnLink to={path}>
-      <Wrapper>
-        <Text>{text}</Text>
-      </Wrapper>
-    </BtnLink>
+    <Wrapper onClick={onClick}>
+      <Text>{text}</Text>
+    </Wrapper>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
@@ -11,6 +11,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const BtnLink = styled(Link)`
+  text-decoration: none;
 `;
 
 const BtnWrapper = styled.div`
@@ -271,7 +275,9 @@ const Info: React.FC = () => {
       <Header />
       <Wrapper>
         <BtnWrapper>
-          <Button path="/" text="목록으로 돌아가기" />
+          <BtnLink to="/">
+            <Button text="목록으로 돌아가기" />
+          </BtnLink>
         </BtnWrapper>
 
         <ListWrapper>
