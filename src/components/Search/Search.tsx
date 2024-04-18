@@ -7,9 +7,35 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-width: 24rem;
-  max-width: 48rem;
-  padding: 3rem 0 5rem 0;
+
+  @media screen and (max-width: 359px) {
+    width: 15rem;
+    padding: 1.4rem 0 2rem 0;
+  }
+
+  @media screen and (min-width: 360px) and (max-width: 389px) {
+    min-width: 18rem;
+    max-width: 20rem;
+    padding: 1.6rem 0 2.4rem 0;
+  }
+
+  @media screen and (min-width: 390px) and (max-width: 667px) {
+    min-width: 20rem;
+    max-width: 28rem;
+    padding: 1.8rem 0 3.2rem 0;
+  }
+
+  @media screen and (min-width: 668px) and (max-width: 1023px) {
+    min-width: 28rem;
+    max-width: 32rem;
+    padding: 2.4rem 0 3.2rem 0;
+  }
+
+  @media screen and (min-width: 1024px) {
+    min-width: 32rem;
+    max-width: 40rem;
+    padding: 3rem 0 4.4rem 0;
+  }
 `;
 
 const Input = styled.input`
@@ -18,33 +44,102 @@ const Input = styled.input`
   justify-content: center;
   align-items: center;
   width: calc(100% - 3rem);
-  height: 6vh;
-  border-radius: 3rem;
   border: 0.12rem solid #4f5153;
+  border-radius: 3rem;
   padding: 0 2rem;
   color: #4f5153;
-  font-size: 1.2rem;
-  &::placeholder {
-    color: gray;
-    font-size: 0.88rem;
-  }
+
   &:focus {
     border: 0.16rem solid #4f5153;
   }
+
+  @media screen and (max-width: 359px) {
+    height: 5.6vh;
+    border: 0.1rem solid #4f5153;
+    padding: 0 1.4rem;
+    font-size: 0.88rem;
+
+    &::placeholder {
+      color: gray;
+      font-size: 0.76rem;
+    }
+  }
+
+  @media screen and (min-width: 360px) and (max-width: 389px) {
+    height: 6vh;
+    font-size: 1rem;
+
+    &::placeholder {
+      color: gray;
+      font-size: 0.88rem;
+    }
+  }
+
+  @media screen and (min-width: 390px) and (max-width: 667px) {
+    height: 6vh;
+    font-size: 1rem;
+
+    &::placeholder {
+      color: gray;
+      font-size: 0.92rem;
+    }
+  }
+
+  @media screen and (min-width: 668px) and (max-width: 1023px) {
+    height: 5.6vh;
+    font-size: 1.2rem;
+
+    &::placeholder {
+      color: gray;
+      font-size: 1rem;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    height: 5.8vh;
+    font-size: 1.2rem;
+
+    &::placeholder {
+      color: gray;
+      font-size: 1rem;
+    }
+  }
 `;
 
-const Text = styled.h3`
-  font-size: 1rem;
+const Text = styled.span`
   font-weight: 700;
   color: #4f5153;
   position: absolute;
-  right: 1rem;
-  width: 2rem;
   cursor: pointer;
 
   &:hover {
     color: #3474ae;
     font-weight: 900;
+  }
+
+  @media screen and (max-width: 359px) {
+    font-size: 0.88rem;
+    right: 1.2rem;
+  }
+
+  @media screen and (min-width: 360px) and (max-width: 389px) {
+    font-size: 1rem;
+    right: 1.4rem;
+  }
+
+  @media screen and (min-width: 390px) and (max-width: 667px) {
+    font-size: 1rem;
+    right: 1.6rem;
+  }
+
+  @media screen and (min-width: 668px) and (max-width: 1023px) {
+    font-size: 1.2rem;
+    right: 2rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 1.2rem;
+    right: 2.2rem;
   }
 `;
 
