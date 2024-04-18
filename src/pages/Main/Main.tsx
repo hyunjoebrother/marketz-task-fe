@@ -131,6 +131,8 @@ interface ProductResponse {
 
 const Main: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [searchItem, setSearchItem] = useState("");
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
 
   useEffect(() => {
     fetchData();
@@ -142,6 +144,20 @@ const Main: React.FC = () => {
       setProducts(data.products.slice(0, 10));
     } catch (error) {
       console.error("Error fetching:", error);
+    }
+  };
+
+  const searchProducts = async (searchItem: string) => {
+    try {
+      const response = await fetch(
+        `https://dummyjson.com/products/search?q=${searchItem}`
+      );
+      const data: ProductResponse = await response.json();
+      setSearchItem(searchItem);
+      setSearchResults(data.products);
+      console.log("검색 결과:", data);
+    } catch (error) {
+      console.error("Error searching:", error);
     }
   };
 
@@ -161,9 +177,9 @@ const Main: React.FC = () => {
     <div>
       <Header />
       <Wrapper>
-        <Search />
+        <Search onSearch={searchProducts} />
         <ListWrapper>
-          {products.map((product) => (
+          {(searchItem === "" ? products : searchResults).map((product) => (
             <ProductCard
               key={product.id}
               id={product.id}
@@ -173,8 +189,12 @@ const Main: React.FC = () => {
               price={product.price}
             />
           ))}
+          {searchItem && searchResults.length === 0 && (
+            <div>해당 상품이 없습니다</div>
+          )}
         </ListWrapper>
-        <BtnWrapper>
+
+        <BtnWrapper style={{ display: searchItem === "" ? "" : "none" }}>
           {products.length === 100 ? (
             <UpText
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
