@@ -2,7 +2,7 @@
 - 서비스명: **Marketz**
 - 주제: 쇼핑몰 웹사이트 UI와 로직 구현
 - 기간: 24.04.16 개발 시작
-- 링크: 
+- 링크: https://marketz-task-fe.pages.dev/
 
 <br>
 
