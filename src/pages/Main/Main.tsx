@@ -98,7 +98,7 @@ const Main: React.FC = () => {
     fetchData();
   }, []);
 
-  console.log("데이터:", products);
+  //   console.log("데이터:", products);
 
   return (
     <div>
