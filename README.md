@@ -23,7 +23,7 @@
 ### 0️⃣ 전반적인 기본 레이아웃 UI 구현
 > _기능별로 컴포넌트 단위로 모듈하하여 styled-components를 활용하여 UI 구현_
 - Main 페이지에는 grid를 사용하여 productCard 배치 로직 구성
-- id를 통하여 Info 페이지 이동 및 url의 params를 이용하여 해당 상품에 대한 info 페이지로 라우팅 로직 적용 예정
+- id를 통하여 Info 페이지 이동 및 url의 params를 이용하여 해당 상품에 대한 info 페이지로 라우팅 로직 적용
 
 <br>
 
