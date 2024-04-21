@@ -138,6 +138,14 @@ const Main: React.FC = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    let savedVisitedInfo = localStorage.getItem("isVisitInfoPage");
+    let savedScrollPosition = localStorage.getItem("scrollPosition");
+    if (savedVisitedInfo === "true") {
+      window.scrollTo(0, parseInt(savedScrollPosition || "0"));
+    }
+  }, []);
+
   const fetchData = async () => {
     try {
       const data: ProductResponse = await fetchProducts();
@@ -155,7 +163,6 @@ const Main: React.FC = () => {
       const data: ProductResponse = await response.json();
       setSearchItem(searchItem);
       setSearchResults(data.products);
-      console.log("검색 결과:", data);
     } catch (error) {
       console.error("Error searching:", error);
     }
@@ -173,6 +180,11 @@ const Main: React.FC = () => {
     }
   };
 
+  const handleSaveScroll = () => {
+    const scrollPosition = window.scrollY;
+    localStorage.setItem("scrollPosition", scrollPosition.toString());
+  };
+
   return (
     <div>
       <Header />
@@ -187,6 +199,7 @@ const Main: React.FC = () => {
               title={product.title}
               brand={product.brand}
               price={product.price}
+              onClick={handleSaveScroll}
             />
           ))}
           {searchItem && searchResults.length === 0 && (

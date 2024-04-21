@@ -8,6 +8,7 @@ interface ProductCardProps {
   price: number;
   brand: string;
   thumbnail: string;
+  onClick: () => void;
 }
 
 const CardLink = styled(Link)`
@@ -219,9 +220,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
   brand,
   title,
   price,
+  onClick,
 }) => {
+  const handleClick = () => {
+    onClick();
+  };
+
   return (
-    <CardLink to={`/info/${id}`}>
+    <CardLink to={`/info/${id}`} onClick={handleClick}>
       <Wrapper>
         <ImageWrapper>
           <ImageSrc src={thumbnail} />

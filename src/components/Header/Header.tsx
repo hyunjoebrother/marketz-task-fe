@@ -68,9 +68,13 @@ const Text = styled.h3`
 `;
 
 const Header: React.FC = () => {
+  const refreshScroll = () => {
+    localStorage.setItem("isVisitInfoPage", "false");
+    localStorage.setItem("scrollPosition", "0");
+  };
   return (
     <Wrapper>
-      <HeaderLink to="/">
+      <HeaderLink to="/" onClick={refreshScroll}>
         <Text>Marketz</Text>
       </HeaderLink>
     </Wrapper>
