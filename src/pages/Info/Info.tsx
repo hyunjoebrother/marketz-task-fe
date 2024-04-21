@@ -267,15 +267,19 @@ const Info: React.FC = () => {
   }, [id]);
 
   if (!product) {
-    return null; // 상품 정보가 없을 경우 아무것도 렌더링하지 않습니다.
+    return null;
   }
+
+  const handleGoBack = () => {
+    localStorage.setItem("isVisitInfoPage", "true");
+  };
 
   return (
     <div>
       <Header />
       <Wrapper>
         <BtnWrapper>
-          <BtnLink to="/">
+          <BtnLink to="/" onClick={handleGoBack}>
             <Button text="목록으로 돌아가기" />
           </BtnLink>
         </BtnWrapper>
